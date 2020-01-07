@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>{{ post.name }}</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/blog-post.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'homepage' %}">TRUEPY BLOGGERS</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+      {% if request.user.is_authenticated %}
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">ваш Блог
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'logout' %}">Выйти
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+        </ul>
+      {% else %}
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'register' %}">Зарегистрироватся
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'login' %}">Войти
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+        </ul>
+      {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+      <!-- Post Content Column -->
+      <div class="col-lg-8">
+        <!-- Title -->
+        <h1 class="mt-4">{{ post.name }}</h1>
+
+        <!-- Author -->
+        <p class="lead">
+          by
+          <a href="#">{{ post.author }}</a>
+        </p>
+
+        <hr>
+
+        <!-- Date/Time -->
+        <p>{{ post.date_time }}</p>
+        {% if post.author == request.user %}
+          <a href="{% url 'edit' post.id %}" class="btn btn-primary">Редактировать пост</a>
+          <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'delete' post.id %}">Удалить пост</a>
+        {% endif %}
+
+        <hr>
+
+        <!-- Preview Image -->
+        <img class="img-fluid rounded" src="{{ post.post_image.url }}" height="300" width="900" alt="">
+        <hr>
+
+        <!-- Post Content -->
+
+        <p>{{ post.body }}</p>
+
+        <hr>
+        <!-- Comments Form -->
+        <div class="card my-4">
+          {% if request.user.is_authenticated %}
+          <h5 class="card-header">Прокомментировать Пост:</h5>
+          <div class="card-body">
+            <form method="post">
+              <div class="form-group">
+                <textarea name='body' class="form-control" rows="5"></textarea>
+              </div>
+              {% csrf_token %}
+              <button type="submit" class="btn btn-primary">подтвердить</button>
+            </form>
+          </div>
+          {% else %}
+          <p>вам нужно зарегистрироватся или войти чтобы оставить комментарий</p>
+          <p class="m-auto">
+      			<a href="{% url 'register' %}">Зарегистрируйтесь</a> или
+      			<a href="{% url 'login' %}">Войдите</a>.
+      		</p>
+          {% endif %}
+        </div>
+        {% for comment in comments %}
+        <!-- Single Comment -->
+        <div class="media mb-4">
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+          <div class="media-body">
+            <h5 class="mt-0">{{ comment.author }}</h5>
+            {{ comment.body }}
+          </div>
+        </div>
+        {% endfor %}
+
+      <!-- Sidebar Widgets Column -->
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; N.A.</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+</html>
