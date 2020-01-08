@@ -100,8 +100,9 @@ def delete_post(request, id):
     return render(request, "post_confirm_delete.html", context)
 
 def my_blog(request, id):
-    posts = Entry.objects.filter(id=id)
+    accounts = Account.objects.filter(id=id)
+    posts = accounts.posts
     context = {
         "posts": posts
     }
-    return render(request, "my_blog.html", context)    
+    return render(request, "my_blog.html", context)
