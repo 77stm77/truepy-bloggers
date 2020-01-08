@@ -56,8 +56,8 @@ def must_authenticate_view(request):
 
 
 def my_blog(request, id):
-    accounts = Account.objects.filter(id=id)
-    posts = accounts.posts
+    posts = Account.objects.filter(id=id)
+    posts.posts.all()
     context = {
         "posts": posts
     }
