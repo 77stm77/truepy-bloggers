@@ -98,3 +98,10 @@ def delete_post(request, id):
         "object": obj
     }
     return render(request, "post_confirm_delete.html", context)
+
+def my_blog(request, id):
+    posts = Entry.objects.filter(id=id)
+    context = {
+        "posts": posts
+    }
+    return render(request, "my_blog.html", context)    

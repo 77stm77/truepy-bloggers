@@ -53,11 +53,3 @@ def login_view(request):
 
 def must_authenticate_view(request):
 	return render(request, 'must_auth.html', {})
-
-
-def my_blog(request, id):
-    accounts = Account.objects.filter(id=id)
-    context = {
-        "accounts": accounts
-    }
-    return render(request, "my_blog.html", context)
