@@ -74,13 +74,13 @@
         <!-- Blog Post -->
         <div class="card mb-4">
           <div class="card-body">
-            <h2 class="card-title">{{ account.post.name }}</h2>
-            <p class="card-text">{{ post.post.body }}</p>
-            <a href="{{ post.post.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
+            <h2 class="card-title">{{ post.name }}</h2>
+            <p class="card-text">{{ post.body }}</p>
+            <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
           </div>
           <div class="card-footer text-muted">
-            Пост зделан в {{ post.post.date_time }} by
-            <a>{{ post.post.author }}</a>
+            Пост зделан в {{ post.date_time }} by
+            <a>{{ post.author }}</a>
           </div>
         </div>
         {% endfor %}

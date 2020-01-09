@@ -32,6 +32,7 @@ urlpatterns = [
     path('edit/<int:id>/', core_views.edit_post, name="edit"),
     path('delete/<int:id>/', core_views.delete_post, name="delete"),
     path('my_blog/<int:id>/', user_views.my_blog, name="my_blog")
+
 ]
 
 if settings.DEBUG:

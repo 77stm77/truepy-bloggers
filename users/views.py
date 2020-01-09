@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from users.models import Account
 from users.forms import RegistrationForm, AccountAuthenticationForm
+from core.models import Post
 
 
 def register(request):
@@ -54,10 +55,9 @@ def login_view(request):
 def must_authenticate_view(request):
 	return render(request, 'must_auth.html', {})
 
-
 def my_blog(request, id):
-    posts = Account.objects.filter(id=id)
-    posts.posts.all()
+    author = Account.objects.get(id=id)
+    posts = author.posts.all()
     context = {
         "posts": posts
     }
