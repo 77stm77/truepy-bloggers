@@ -46,6 +46,9 @@ class Account(AbstractBaseUser):
 
     objects = MyAccountManager()
 
+    def get_absolute_url(self):
+        return reverse("my_blog", kwargs={"id": self.id})
+
     def __str__(self):
         return self.username
 

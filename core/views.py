@@ -6,22 +6,9 @@ from core.forms import CreateBlogPostForm, CommentForm, UpdatePostForm
 from users.models import Account
 from core.models import Comment
 
-class homepage(ListView):
-    model = Post
-    template_name = 'homepage.html'
-    ordering = ['-date_time']
+def homepage(request):
+    return render(request, "homepage.html", {})
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        self.query = self.request.GET.get('q', "")
-        if self.query:
-            queryset = queryset.filter(name__contains=self.query)
-        return queryset
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['query'] = self.query
-        return context
 
 def post_publish(request):
 	context = {}
