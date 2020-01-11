@@ -4,6 +4,7 @@
 <head>
   <title>Главная страница</title>
   <link type="text/css" href="{% static 'css/blog-post.css' %}" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/yourcode.js"></script>
 
 </head>
 
@@ -24,7 +25,7 @@
       <a class="right" href="{% url 'login' %}">Войти</a>
       <div class="search-container"
         <form action="/action_page.php">
-          <input type="text" placeholder="поиск... ">>
+          <input type="text" placeholder="поиск... ">
         </form>
       </div>
     {% endif %}
@@ -42,3 +43,4 @@
   </div>
   {% endfor %}
 </body>
+</html>
