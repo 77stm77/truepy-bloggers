@@ -3,10 +3,42 @@
 <html lang="en">
 <head>
   <title>Главная страница</title>
-  <link type="text/css" href="{% static 'css/blog-post.html' %}" rel="stylesheet">
+  <link type="text/css" href="{% static 'css/blog-post.css' %}" rel="stylesheet">
 
 </head>
 
 <body>
-  <h1>главная страница</h1>
+  <div class="topnav">
+    {% if request.user.is_authenticated %}
+      <a class="big" href="{% url 'homepage' %}">TRUEPY BLOGGERS</a>
+      <a href="{% url 'create' %}">написать пост</a>
+      <a class="right" href="{% url 'logout' %}">Выйти</a>
+      <div class="search-container"
+        <form action="/action_page.php">
+          <input type="text" placeholder="поиск... ">
+        </form>
+      </div>
+    {% else %}
+      <a class="big" href="{% url 'homepage' %}">TRUEPY BLOGGERS</a>
+      <a class="right" href="{% url 'register' %}">Зарегистрироватся</a>
+      <a class="right" href="{% url 'login' %}">Войти</a>
+      <div class="search-container"
+        <form action="/action_page.php">
+          <input type="text" placeholder="поиск... ">>
+        </form>
+      </div>
+    {% endif %}
+  </div>
+  {% for post in posts %}
+  <div class="row">
+    <div class="leftcolumn">
+      <div class="card">
+        <h2 class="post-name" >{{ post.name }}</h2>
+        <h5 class="post-author-date" >{{ post.author }}, {{ post.date_time }}</h5>
+        <img src="{{ post.post_image.url }}">
+        <p>{{ post.body }}</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
 </body>

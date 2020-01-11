@@ -7,7 +7,11 @@ from users.models import Account
 from core.models import Comment
 
 def homepage(request):
-    return render(request, "homepage.html", {})
+    posts = Post.objects.all()
+    context = {
+        "posts": posts
+    }
+    return render(request, "homepage.html", context)
 
 
 def post_publish(request):
