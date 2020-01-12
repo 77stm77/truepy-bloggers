@@ -1,0 +1,46 @@
+body {
+  background-color: #f1f1f1;
+  margin: 0;
+}
+
+.topnav {
+  width: 1520px;
+  height: 58px;
+  background-color: #abebe6;
+  overflow: hidden;
+}
+
+.topnav a {
+  float: left;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 22px;
+  font-family: monospace;
+  color: black;
+  background-color: #abebe6;
+}
+
+
+.topnav a.right {
+ float: right;
+}
+
+.topnav a.big {
+  font-family: monospace;
+  font-style: oblique;
+  font-weight: 900;
+  font-size: 30px;
+}
+
+.topnav .search-container {
+  float: right;
+}
+
+.topnav input[type=text] {
+  border-radius: 12px;
+  padding: 14px 16px;
+  float: right;
+  border: none;
+  font-size: 22px;
+}
