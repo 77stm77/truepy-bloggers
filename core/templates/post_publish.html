@@ -11,161 +11,40 @@
 
   <title>Главная Страница</title>
 
-  <!-- Bootstrap core CSS -->
-  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-
   <!-- Custom styles for this template -->
-  <link href="{% static 'css/blog-home.css' %}" rel="stylesheet">
+  <link href="{% static 'css/blog-post-post_publish.css' %}" rel="stylesheet">
 
 </head>
 
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="{% url 'homepage' %}">TRUEPY BLOGGERS</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-      {% if request.user.is_authenticated %}
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">ваш Блог
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'logout' %}">Выйти
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-        </ul>
-      {% else %}
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'register' %}">Зарегистрироватся
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-        </ul>
-      {% endif %}
+  <div class="topnav">
+    {% if request.user.is_authenticated %}
+      <a class="big" href="{% url 'homepage' %}">TRUEPY BLOGGERS</a>
+      <a href="{% url 'create' %}">написать пост</a>
+      <a class="right" href="{% url 'logout' %}">Выйти</a>
+      <div class="search-container"
+        <form action="/action_page.php">
+          <input type="text" placeholder="поиск... ">
+        </form>
       </div>
-    </div>
-  </nav>
-
-
-  <!-- Page Content -->
+    {% else %}
+      <a class="big" href="{% url 'homepage' %}">TRUEPY BLOGGERS</a>
+      <a class="right" href="{% url 'register' %}">Зарегистрироватся</a>
+      <a class="right" href="{% url 'login' %}">Войти</a>
+      <div class="search-container"
+        <form action="/action_page.php">
+          <input type="text" placeholder="поиск... ">
+        </form>
+      </div>
+    {% endif %}
+  </div>
   <div class="container">
-
     <div class="row">
 
-      <!-- Blog Entries Column -->
-      <div class="row">
-    		<div class="col-lg-7 offset-lg-1">
-    			<form class="create-form" method="post" enctype="multipart/form-data">{% csrf_token %}
-
-    				<!-- title -->
-    				<div class="form-group">
-    					<input class="form-control" type="text" name="name" id="id_title" placeholder="Название поста" required autofocus>
-    				</div>
-
-    				<!-- Body -->
-    				<div class="form-group">
-    					<textarea class="form-control" rows="10" type="text" name="body" id="id_body" placeholder="Содержание поста" required></textarea>
-    				</div>
-
-    				<!-- Image -->
-    				<div class="form-group">
-    					<label for="id_post_image">Изображение поста</label>
-    					<input  type="file" name="post_image" id="id_image" accept="image/*" required>
-    				</div>
-
-    				<!-- Submit btn -->
-    				<button class="submit-button btn btn-lg btn-primary btn-block" type="submit">POST</button>
-    			</form>
-    		</div>
-    	</div>A
-
-      <!-- Sidebar Widgets Column -->
-      <div class="col-md-4">
-
-        <!-- Search Widget -->
-        <div class="card my-4">
-          <h5 class="card-header">Поиск постов о питоне и питонистов</h5>
-          <div class="card-body">
-          <form action="{% url 'homepage' %}" method="get">
-            <div class="input-group">
-              <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Найти...">
-            </div>
-          </form>
-          </div>
-        </div>
-
-        <!-- Categories Widget -->
-        <div class="card my-4">
-          <h5 class="card-header">Categories</h5>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-lg-6">
-                <ul class="list-unstyled mb-0">
-                  <li>
-                    <a href="#">Web Design</a>
-                  </li>
-                  <li>
-                    <a href="#">HTML</a>
-                  </li>
-                  <li>
-                    <a href="#">Freebies</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="col-lg-6">
-                <ul class="list-unstyled mb-0">
-                  <li>
-                    <a href="#">JavaScript</a>
-                  </li>
-                  <li>
-                    <a href="#">CSS</a>
-                  </li>
-                  <li>
-                    <a href="#">Tutorials</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Side Widget -->
-        <div class="card my-4">
-          <h5 class="card-header">Side Widget</h5>
-          <div class="card-body">
-            You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
-          </div>
-        </div>
-
-      </div>
-
     </div>
-    <!-- /.row -->
-
   </div>
-  <!-- /.container -->
-
-  <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
-    </div>
-    <!-- /.container -->
-  </footer>
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
 </body>
 
 </html>

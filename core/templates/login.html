@@ -3,133 +3,42 @@
 <html lang="en">
 
 <head>
-
-  <style type="text/css">
-    .form-signin {
-    width: 100%;
-    max-width: 330px;
-    padding: 15px;
-    margin: auto;
-    }
-
-    .form-signin .form-control {
-      position: relative;
-      box-sizing: border-box;
-      height: auto;
-      padding: 10px;
-      font-size: 16px;
-    }
-    .form-signin .form-control:focus {
-      z-index: 2;
-    }
-    .form-signin input[type="text"] {
-      margin-bottom: -1px;
-      border-bottom-right-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-    .form-signin input[type="password"] {
-      margin-bottom: 10px;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-    }
-    .h3{
-      text-align: center;
-    }
-  </style>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Вход нового пользователя</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="{% static 'css/blog-home.css' %}" rel="stylesheet">
-
+  <title>Вход пользователя</title>
+  <link href="{% static 'css/blog-login.css' %}" rel="stylesheet">
 </head>
 
 <body>
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="{% url 'homepage' %}">TRUEPY BLOGGERS</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-      {% if request.user.is_authenticated %}
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">ваш Блог
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'logout' %}">Выйти
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-        </ul>
-      {% else %}
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'register' %}">Зарегистрироватся
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-        </ul>
-      {% endif %}
+  <div class="topnav">
+    {% if request.user.is_authenticated %}
+      <a class="big" href="{% url 'homepage' %}">TRUEPY BLOGGERS</a>
+      <a href="{% url 'create' %}">написать пост</a>
+      <a class="right" href="{% url 'logout' %}">Выйти</a>
+      <div class="search-container"
+        <form action="/action_page.php">
+          <input type="text" placeholder="поиск... ">
+        </form>
       </div>
-    </div>
-  </nav>
-
-
-  <!-- Page Content -->
-  <div class="container">
-
-    <div class="row">
-
-      <!-- Blog Entries Column -->
-      <div class="col-lg-8">
-        <div class="row">
-          <form class="form-signin" method="post">{% csrf_token %}
-            <h1 class="h3 mb-3 font-weight-normal">Login</h1>
-            <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Имя пользователя" required autofocus>
-            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Пароль" required>
-            {% for field in login_form %}
-                <p>
-                  {% for error in field.errors %}
-                    <p style="color: red">{{ error }}</p>
-                  {% endfor %}
-                </p>
-            {% endfor %}
-            {% if login_form.non_field_errors %}
-              <div style="color: red">
-                <p>{{login_form.non_field_errors}}</p>
-              </div>
-            {% endif %}
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
-
-          </form>
-        </div>
-        <!-- /.row -->
+    {% else %}
+      <a class="big" href="{% url 'homepage' %}">TRUEPY BLOGGERS</a>
+      <a class="right" href="{% url 'register' %}">Зарегистрироватся</a>
+      <div class="search-container"
+        <form action="/action_page.php">
+          <input type="text" placeholder="поиск... ">
+        </form>
       </div>
-
-    <!-- /.row -->
-
+    {% endif %}
   </div>
-  <!-- /.container -->
-
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+  <div class="login-form">
+    <form method="post">{% csrf_token %}
+      <ul style="list-style-type: none;" >
+        <li><h3 class="login">Вход</h3><li>
+        <li><input type="text" placeholder="Enter Username" id="inputUsername" name="username" required></li>
+        <li><input type="password" placeholder="Enter Password" id="password" name="password" required></li>
+        <li><button type="submit">Войти</button></li>
+        <li><input type="checkbox" checked="checked" name="remember"><a class="checkbox">Запомнить меня</a></li>
+      </ul>
+    </form>
+  </div>
 </body>
 
 </html>

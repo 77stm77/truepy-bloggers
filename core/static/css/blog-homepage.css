@@ -83,3 +83,26 @@ body {
 .row {
   padding-top: 44px;
 }
+
+.rightcolumn {
+  float: right;
+  width: 25%;
+  padding-left: 20px;
+}
+
+.card-sub {
+  width: 300px;
+  margin-left: 15px;
+  position: fixed;
+  background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+  float: right;
+  border-radius: 12px;
+}
+
+.card-sub {
+  font-family: monospace;
+  font-size: 25px;
+  text-align: center;
+}
