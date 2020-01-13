@@ -4,6 +4,7 @@ body {
 }
 
 .topnav {
+  position: fixed;
   width: 1520px;
   height: 58px;
   background-color: #abebe6;
@@ -43,4 +44,52 @@ body {
   float: right;
   border: none;
   font-size: 22px;
+}
+
+.create-post-form input[type="text"] {
+  border-radius: 12px;
+  height: 50px;
+  width: 850px;
+  font-size: 22px;
+  border-style: solid;
+  border-color: #ebabb0;
+  border-width: thick;
+}
+
+.create-post-form textarea {
+  margin-top: 5px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #ebabb0;
+  font-family: monospace;
+  font-size: 22px;
+  height: 1000px;
+  width: 850px;
+  border-width: thick;
+}
+
+.create-post-form h3 {
+  text-align: center;
+  font-family: monospace;
+}
+
+.create-post-form {
+  margin-top: 58px;
+  margin-left: 300px;
+  float: left;
+  font-size: 22px;
+  font-family: monospace;
+}
+
+.create-post-form button.create-post {
+  margin-top: 20px;
+  border-radius: 10px;
+  font-family: monospace;
+  font-size: 22px;
+  height: 35px;
+  width: 200px;
+  background-color: green;
+  border-color: #abebe6;
+  border-style: solid;
+  border-width: thick;
 }
