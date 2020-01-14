@@ -42,13 +42,13 @@
   </div>
   <div class="post-creation-form">
     <div class="create-post-form">
-      <form method="post">{% csrf_token %}
+      <form enctype="multipart/form-data" method="post">{% csrf_token %}
         <ul style="list-style-type: none;">
           <li><h3>Создание нового поста</h3><li>
-          <li><input type="text" placeholder="Название поста" id="id_name" name="name" required></li>
-          <li><textarea type="password" placeholder="Содержание поста" rows="15" id="id_body" name="body" required></textarea></li>
+          <li><input type="text" placeholder="Название поста" id="name" name="name" required></li>
+          <li><textarea type="password" placeholder="Содержание поста" rows="15" id="body" name="body" required></textarea></li>
           <li><a>Изображение поста</a></li>
-          <li><input type="file" name="post_image" id="id_post_image" accept="image/*"></li>
+          <li><input type="file" name="post_image" id="post_image" accept="image/*"></li>
           <li><button class="create-post" type="submit">Создать пост</button></li>
         </ul>
       </form>

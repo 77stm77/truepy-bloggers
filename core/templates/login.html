@@ -36,6 +36,18 @@
         <li><input type="password" placeholder="Enter Password" id="password" name="password" required></li>
         <li><button type="submit">Войти</button></li>
         <li><input type="checkbox" checked="checked" name="remember"><a class="checkbox">Запомнить меня</a></li>
+        <li>{% for field in login_form %}
+            <p>
+              {% for error in field.errors %}
+                <p style="color: red">{{ error }}</p>
+              {% endfor %}
+            </p>
+        {% endfor %}</li>
+        <li>{% if login_form.non_field_errors %}
+          <div style="color: red">
+            <p>{{login_form.non_field_errors}}</p>
+          </div>
+        {% endif %}</li>        
       </ul>
     </form>
   </div>

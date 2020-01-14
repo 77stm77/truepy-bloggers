@@ -1,0 +1,78 @@
+body {
+  background-color: #f1f1f1;
+  margin: 0;
+}
+
+.topnav {
+  width: 1535px;
+  height: 58px;
+  background-color: #abebe6;
+  overflow: hidden;
+}
+
+.topnav a {
+  float: left;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 22px;
+  font-family: monospace;
+  color: black;
+  background-color: #abebe6;
+}
+
+
+.topnav a.right {
+ float: right;
+}
+
+.topnav a.big {
+  font-family: monospace;
+  font-style: oblique;
+  font-weight: 900;
+  font-size: 30px;
+}
+
+.topnav .search-container {
+  float: right;
+}
+
+.topnav input[type=text] {
+  border-radius: 12px;
+  padding: 14px 16px;
+  float: right;
+  border: none;
+  font-size: 22px;
+}
+
+.card {
+  width: 1270px;
+  margin-left: 150px;
+  background-color: white;
+  border-radius: 12px;
+  border-color: #ebabb0;
+  border-style: solid;
+  margin-top: 5px;
+}
+
+.post-author img.profile_pic {
+  width: 50px;
+  height: 50px;
+}
+
+.card h1.post-name {
+  font-family: monospace;
+  font-size: 60px;
+}
+
+.card a.post-content {
+  font-family: monospace;
+  font-size: 22px;
+  margin-top: 100px;
+}
+
+.post-author a {
+  font-family: monospace;
+  font-size: 25px;
+  margin-left: 10px;
+}

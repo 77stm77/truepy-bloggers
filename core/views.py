@@ -15,7 +15,6 @@ def homepage(request):
 
 
 def post_publish(request):
-	context = {}
 	user = request.user
 	if not user.is_authenticated:
 		return redirect('must_authenticate')
@@ -28,9 +27,8 @@ def post_publish(request):
 		obj.save()
 		form = CreateBlogPostForm()
 
-	context['form'] = form
 
-	return render(request, 'post_publish.html', context)
+	return render(request, 'post_publish.html', {"form" : form})
 
 def post_view(request, id):
     template_name = 'post.html'
@@ -46,7 +44,7 @@ def post_view(request, id):
             new_comment.post = post
             new_comment.save()
     else:
-        comment_form = CommentForm()
+        comment_form = CommentForm(data=request.POST, files=request.FILES)
 
     return render(request, template_name, {'post': post,'comments': comments, 'comment_form': comment_form})
 

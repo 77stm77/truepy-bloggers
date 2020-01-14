@@ -43,7 +43,10 @@
         <h2 class="post-name" >{{ post.name }}</h2>
         <h5 class="post-author-date" >{{ post.author }}, {{ post.date_time }}</h5>
         <img src="{{ post.post_image.url }}">
-        <p>{{ post.body }}</p>
+        <p>{{ post.body|truncatechars:500 }}</p>
+        <div class="read-more">
+        <button type="button"><a href="{{ post.get_absolute_url }}">Читать Дальше --></a></button>
+        </div>
       </div>
     </div>
     {% endfor %}
