@@ -45,7 +45,9 @@
     <div class="post-author">
       <img class="profile_pic" src="{{ post.author.profile_pic.url }}"><a>{{ post.author.username }}</a>
     </div>
-    <a class="post-content">{{ post.body }}</a>
+    <div class="post-body">
+      <a class="post-content">{{ post.body | safe | linebreaks }}</a>
+    </div>
   </div>
 </body>
 
