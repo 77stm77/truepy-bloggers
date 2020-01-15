@@ -9,7 +9,12 @@ class Post(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
     date_time = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=100)
-    post_image = models.ImageField(default="http://placehold.it/750x300", upload_to="post_images")
+    post_image = models.ImageField(default="post_images/default.png", upload_to="post_images")
+    img_1 = models.ImageField(default="post_images/default.png", upload_to="post_images")
+    img_2 = models.ImageField(default="post_images/default.png", upload_to="post_images")
+    img_3 = models.ImageField(default="post_images/default.png", upload_to="post_images")
+    img_4 = models.ImageField(default="post_images/default.png", upload_to="post_images")
+    img_5 = models.ImageField(default="post_images/default.png", upload_to="post_images")
 
     def get_absolute_url(self):
         return reverse("post", kwargs={"id": self.id})

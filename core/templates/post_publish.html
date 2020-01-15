@@ -16,7 +16,7 @@
 
 </head>
 
-<body>
+<body onload="enableEditMode();">
 
   <!-- Navigation -->
   <div class="topnav">
@@ -46,7 +46,17 @@
         <ul style="list-style-type: none;">
           <li><h3>Создание нового поста</h3><li>
           <li><input type="text" placeholder="Название поста" id="name" name="name" required></li>
-          <li><textarea type="password" placeholder="Содержание поста" rows="15" id="body" name="body" required></textarea></li>
+          <li><div class="add-images to body" >
+            <ul style="list-style-type: none;" >
+              <input type="file" id="img_1" onclick="execCmd('InsertImage')"><a class="add-image-to body">Добавить изображение в пост</a></input>
+              <input type="file" id="img_2" onclick="execCmd('InsertImage')"><a class="add-image-to body">Добавить изображение в пост</a></input>
+              <input type="file" id="img_3" onclick="execCmd('InsertImage')"><a class="add-image-to body">Добавить изображение в пост</a></input>
+              <input type="file" id="img_4" onclick="execCmd('InsertImage')"><a class="add-image-to body">Добавить изображение в пост</a></input>
+              <input type="file" id="img_5" onclick="execCmd('InsertImage')"><a class="add-image-to body">Добавить изоброжение в пост</a></input>
+            </ul>
+          </div></li>
+          <li><textarea name="richTextField" placeholder="Содержание поста" rows="15" id="body" name="body" required></textarea></li>
+          <script type="text/javascript" src="{% static 'js/richtxt.js' %}" ></script>
           <li><a>Изображение поста</a></li>
           <li><input type="file" name="post_image" id="post_image" accept="image/*"></li>
           <li><button class="create-post" type="submit">Создать пост</button></li>
