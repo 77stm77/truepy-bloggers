@@ -108,23 +108,20 @@ body {
 
 .card-sub {
   font-family: monospace;
-  font-size: 25px;
   text-align: center;
 }
 
-.read-more button {
+.read-more a {
   border-radius: 7px;
   height: 50px;
   width: 250px;
   border-style: solid;
   border-color: #ebabb0;
   background-color: #ebabb0;
-}
-
-.read-more a {
   text-decoration: none;
   text-align: center;
   color: black;
   font-family: monospace;
   font-size: 18px;
+  padding: 10px 10px;
 }

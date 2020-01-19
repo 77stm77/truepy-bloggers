@@ -33,7 +33,7 @@
   <div class="row">
     <div class="rightcolumn">
       <div class="card-sub">
-        <h3>мои подписки</h3>
+        <h1>мои подписки</h1>
         <img src="{{ author.profile_pic }}">
       </div>
     </div>
@@ -44,7 +44,7 @@
         <h5 class="post-author-date" >{{ post.author }}, {{ post.date_time }}</h5>
         <p>{{ post.body|truncatechars:500|safe }}</p>
         <div class="read-more">
-        <button type="button"><a href="{{ post.get_absolute_url }}">Читать Дальше --></a></button>
+        <a href="{{ post.get_absolute_url }}">Читать Дальше --></a>
         </div>
       </div>
     </div>
