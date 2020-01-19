@@ -44,23 +44,7 @@
   <div class="post-creation-form">
     <div class="create-post-form">
       <form enctype="multipart/form-data" method="post">{% csrf_token %}
-        <p>
-          <input name="name" id="id_name" required="" placeholder="Название поста" type="text" maxlength="100">
-        </p>
-        <p>
-          <iframe name="richTextField" id="id_body" required="" placeholder="Содержание поста" rows="10" cols="40">
-            <html>
-            <body>
-            </body>
-            </html>
-          </iframe>
-        </p>
-        <p>
-          <input value="" class="hidden-body-text" name="id_body" rows="1" cols="80"></input>
-        </p>
-        <p>
-          <button type="button" name="img_5" id="img_5" onclick="execCommandWithArg('insertImage', prompt('Enter the image URL', ''));">Добавить изображение</button>
-        </p>
+        {{ form.as_p }}    
         <button class="create-post" placeholder="Изображение в содержании" type="submit">Создать пост</button>
       </form>
     </div>
