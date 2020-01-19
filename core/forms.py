@@ -5,7 +5,8 @@ from core.models import Comment
 class CreateBlogPostForm(forms.ModelForm):
 	class Meta:
 		model = Post
-		fields = ['name', 'body', 'post_image']
+		body = 'body'
+		fields = ['name', body, 'img_1', 'img_2', 'img_3', 'img_4', 'img_5']
 
 class CommentForm(forms.ModelForm):
     class Meta:
@@ -15,15 +16,12 @@ class CommentForm(forms.ModelForm):
 class UpdatePostForm(forms.ModelForm):
 	class Meta:
 		model = Post
-		fields = ['name', 'body', 'post_image']
+		fields = ['name', 'body',]
 
 	def save(self, commit=True):
 		post = self.instance
 		post.name = self.cleaned_data['name']
 		post.body = self.cleaned_data['body']
-
-		if self.cleaned_data['post_image']:
-			post.post_image = self.cleaned_data['post_image']
 
 		if commit:
 			post.save()

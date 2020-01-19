@@ -56,16 +56,16 @@ body {
   border-width: thick;
 }
 
-.create-post-form textarea {
+.create-post-form iframe {
   margin-top: 5px;
   border-radius: 10px;
   border-style: solid;
   border-color: #ebabb0;
-  font-family: monospace;
-  font-size: 22px;
   height: 1000px;
   width: 850px;
   border-width: thick;
+  font-size: 22px;
+  font-family: monospace;
 }
 
 .create-post-form h3 {
@@ -88,8 +88,12 @@ body {
   font-size: 22px;
   height: 35px;
   width: 200px;
-  background-color: green;
+  background-color: #abebe6;
   border-color: #abebe6;
   border-style: solid;
   border-width: thick;
+}
+
+.hidden-body-text {
+  visibility: hidden;
 }

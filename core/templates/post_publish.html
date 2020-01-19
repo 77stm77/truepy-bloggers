@@ -13,6 +13,7 @@
 
   <!-- Custom styles for this template -->
   <link href="{% static 'css/blog-post_publish.css' %}" rel="stylesheet">
+  <script type="text/javascript" src="{% static 'js/richtxt.js' %}" ></script>
 
 </head>
 
@@ -43,24 +44,24 @@
   <div class="post-creation-form">
     <div class="create-post-form">
       <form enctype="multipart/form-data" method="post">{% csrf_token %}
-        <ul style="list-style-type: none;">
-          <li><h3>Создание нового поста</h3><li>
-          <li><input type="text" placeholder="Название поста" id="name" name="name" required></li>
-          <li><div class="add-images to body" >
-            <ul style="list-style-type: none;" >
-              <input type="file" id="img_1" onclick="execCmd('InsertImage')"><a class="add-image-to body">Добавить изображение в пост</a></input>
-              <input type="file" id="img_2" onclick="execCmd('InsertImage')"><a class="add-image-to body">Добавить изображение в пост</a></input>
-              <input type="file" id="img_3" onclick="execCmd('InsertImage')"><a class="add-image-to body">Добавить изображение в пост</a></input>
-              <input type="file" id="img_4" onclick="execCmd('InsertImage')"><a class="add-image-to body">Добавить изображение в пост</a></input>
-              <input type="file" id="img_5" onclick="execCmd('InsertImage')"><a class="add-image-to body">Добавить изоброжение в пост</a></input>
-            </ul>
-          </div></li>
-          <li><textarea name="richTextField" placeholder="Содержание поста" rows="15" id="body" name="body" required></textarea></li>
-          <script type="text/javascript" src="{% static 'js/richtxt.js' %}" ></script>
-          <li><a>Изображение поста</a></li>
-          <li><input type="file" name="post_image" id="post_image" accept="image/*"></li>
-          <li><button class="create-post" type="submit">Создать пост</button></li>
-        </ul>
+        <p>
+          <input name="name" id="id_name" required="" placeholder="Название поста" type="text" maxlength="100">
+        </p>
+        <p>
+          <iframe name="richTextField" id="id_body" required="" placeholder="Содержание поста" rows="10" cols="40">
+            <html>
+            <body>
+            </body>
+            </html>
+          </iframe>
+        </p>
+        <p>
+          <input value="" class="hidden-body-text" name="id_body" rows="1" cols="80"></input>
+        </p>
+        <p>
+          <button type="button" name="img_5" id="img_5" onclick="execCommandWithArg('insertImage', prompt('Enter the image URL', ''));">Добавить изображение</button>
+        </p>
+        <button class="create-post" placeholder="Изображение в содержании" type="submit">Создать пост</button>
       </form>
     </div>
   </div>

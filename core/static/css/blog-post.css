@@ -56,8 +56,9 @@ body {
 }
 
 .post-author img.profile_pic {
-  width: 50px;
-  height: 50px;
+  width: 25px;
+  height: 25px;
+  margin-left: 5px;
 }
 
 .card h1.post-name {
@@ -75,4 +76,70 @@ body {
   font-family: monospace;
   font-size: 25px;
   margin-left: 10px;
+}
+
+.plz-sub button {
+  border-style: solid;
+  border-color: #ebabb0;
+  width: 149px;
+  height: 35px;
+  background-color: #ebabb0;
+  border-radius: 7px;
+  margin-left: 5px;
+}
+
+.plz-sub button a {
+  font-family: monospace;
+  font-size: 21px;
+}
+
+.post-author a.edit-post, a.delete-post {
+  font-family: monospace;
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+}
+
+.post-author button.edit-post-button {
+  background-color: #ebabb0;
+  border-color: #ebabb0;
+  border-radius: 7px;
+  border-style: solid;
+  width: 230px;
+  height: 28px;
+}
+
+.post-author button.delete-post-button {
+  background-color: #ebabb0;
+  border-color: #ebabb0;
+  border-radius: 7px;
+  border-style: solid;
+  width: 230px;
+  height: 28px;
+}
+
+.comment-form-textarea {
+  border-style: solid;
+  border-radius: 7px;
+  border-color: #abebe6;
+  width: 500px;
+  font-family: monospace;
+  font-size: 22px;
+  background-color: #f1f1f1;
+}
+
+.comment-form {
+  margin-left: 23px;
+}
+
+.comment {
+  margin-left: 23px;
+}
+
+
+.comment a.comment-author {
+  font-size: 25px;
+  font-family: monospace;
+  color: black;
+  font-weight: bold;
 }

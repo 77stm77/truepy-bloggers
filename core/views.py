@@ -71,7 +71,6 @@ def edit_post(request, id):
 			initial = {
 					"name": post.name,
 					"body": post.body,
-					"post_image": post.post_image,
 			}
 		)
 	context['form'] = form

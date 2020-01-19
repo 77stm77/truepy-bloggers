@@ -43,12 +43,47 @@
   <div class="card">
     <h1 class="post-name">{{ post.name }}</h1>
     <div class="post-author">
-      <img class="profile_pic" src="{{ post.author.profile_pic.url }}"><a>{{ post.author.username }}</a>
+      <img class="profile_pic" src="{{ post.author.profile_pic.url }}"><a>{{ post.author.username }}, {{ post.date_time }}</a>
+      {% if post.author == request.user %}
+        <button class="edit-post-button"><a href="{% url 'edit' post.id %}" class="edit-post">Редактировать пост</a></button>
+        <button class="delete-post-button"><a class="delete-post" href="{% url 'delete' post.id %}">Удалить пост</a></button>
+      {% endif %}
     </div>
+    {% if post.author == request.user %}
+    {% else %}
+      <div class="plz-sub">
+        <button type="button"><a>Подписатся</a></button>
+      </div>
+    {% endif %}
     <div class="post-body">
       <a class="post-content">{{ post.body | safe | linebreaks }}</a>
     </div>
   </div>
+  <div class="card">
+    {% if request.user.is_authenticated %}
+    <form method="post">{% csrf_token %}
+      <div class="comment-form">
+        <p><h5>Прокомментировать Пост:</h5></p>
+        <p><textarea name="body" id='id_body' class="comment-form-textarea" rows="5"></textarea></p>
+        <p><button type="submit" class="btn btn-primary">Потвердить</button></p>
+      </div>
+    </form>
+    {% else %}
+    <p>вам нужно зарегистрироватся или войти чтобы оставить комментарий</p>
+    <p class="m-auto">
+      <a href="{% url 'register' %}">Зарегистрируйтесь</a> или
+      <a href="{% url 'login' %}">Войдите</a>.
+    </p>
+    {% endif %}
+  </div>
+  {% for comment in comments %}
+  <div class="card">
+    <div class="comment">
+      <p><img src="{{ comment.author.profile_pic.url }}" style="width:50px;height:50px;" class="profile_pic"><a class="comment-author">{{ comment.author.username }}</a></p>
+      <p><a>{{ comment.body }}</a></p>
+    </div>
+  </div>
+  {% endfor %}
 </body>
 
 </html>

@@ -4,7 +4,7 @@
 <head>
   <title>Главная страница</title>
   <link type="text/css" href="{% static 'css/blog-homepage.css' %}" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/yourcode.js"></script>
+  <script type="text/javascript" src="https://kit.fontawesome.com/yourcode.js"></script>
 
 </head>
 
@@ -42,8 +42,7 @@
       <div class="card">
         <h2 class="post-name" >{{ post.name }}</h2>
         <h5 class="post-author-date" >{{ post.author }}, {{ post.date_time }}</h5>
-        <img src="{{ post.post_image.url }}">
-        <p>{{ post.body|truncatechars:500 }}</p>
+        <p>{{ post.body|truncatechars:500|safe }}</p>
         <div class="read-more">
         <button type="button"><a href="{{ post.get_absolute_url }}">Читать Дальше --></a></button>
         </div>
