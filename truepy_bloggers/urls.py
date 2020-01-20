@@ -33,4 +33,7 @@ urlpatterns = [
     path('delete/<int:id>/', core_views.delete_post, name="delete"),
     path('my_blog/<int:id>/', user_views.my_blog, name="my_blog"),
     path('summernote/', include('django_summernote.urls')),
-]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
