@@ -40,23 +40,27 @@
       </div>
     {% endif %}
   </div>
-  <div class="card">
-    <h1 class="post-name">{{ post.name }}</h1>
-    <div class="post-author">
-      <img class="profile_pic" src="{{ post.author.profile_pic.url }}"><a>{{ post.author.username }}, {{ post.date_time }}</a>
-      {% if post.author == request.user %}
-        <button class="edit-post-button"><a href="{% url 'edit' post.id %}" class="edit-post">Редактировать пост</a></button>
-        <button class="delete-post-button"><a class="delete-post" href="{% url 'delete' post.id %}">Удалить пост</a></button>
-      {% endif %}
-    </div>
-    {% if post.author == request.user %}
-    {% else %}
-      <div class="plz-sub">
-        <button type="button"><a>Подписатся</a></button>
+  <div class="leftcolumn">
+    <div class="card">
+      <h1 class="post-name">{{ post.name }}</h1>
+      <div class="post-author">
+        <div class="div-img">
+          <img class="profile_pic" src="{{ post.author.profile_pic.url }}"><a>{{ post.author.username }}, {{ post.date_time }}</a>
+        </div>  
+        {% if post.author == request.user %}
+          <button class="edit-post-button"><a href="{% url 'edit' post.id %}" class="edit-post">Редактировать пост</a></button>
+          <button class="delete-post-button"><a class="delete-post" href="{% url 'delete' post.id %}">Удалить пост</a></button>
+        {% endif %}
       </div>
-    {% endif %}
-    <div class="post-body">
-      <a class="post-content">{{ post.body | safe | linebreaks }}</a>
+      {% if post.author == request.user %}
+      {% else %}
+        <div class="plz-sub">
+          <button type="button"><a>Подписатся</a></button>
+        </div>
+      {% endif %}
+      <div class="post-body">
+        <a class="post-content" >{{ post.body | safe | linebreaks }}</a>
+      </div>
     </div>
   </div>
   <div class="card">

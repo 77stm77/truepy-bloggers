@@ -44,7 +44,13 @@
   <div class="post-creation-form">
     <div class="create-post-form">
       <form enctype="multipart/form-data" method="post">{% csrf_token %}
-        {{ form.as_p }}    
+        <p>
+          <input type="text" id="id_name" name="name" placeholder="название поста" required>
+        </p>
+        <p>
+          <label style="font-family : monospace;font-size : 25px;" >Содержание поста</label>
+          {{ form.body }}
+        </p>
         <button class="create-post" placeholder="Изображение в содержании" type="submit">Создать пост</button>
       </form>
     </div>

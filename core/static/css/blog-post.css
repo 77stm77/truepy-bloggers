@@ -4,7 +4,7 @@ body {
 }
 
 .topnav {
-  width: 1535px;
+  width: 1520px;
   height: 58px;
   background-color: #abebe6;
   overflow: hidden;
@@ -45,6 +45,7 @@ body {
   font-size: 22px;
 }
 
+
 .card {
   width: 1270px;
   margin-left: 150px;
@@ -52,13 +53,18 @@ body {
   border-radius: 12px;
   border-color: #ebabb0;
   border-style: solid;
-  margin-top: 5px;
+  margin-top: 20px;
 }
 
-.post-author img.profile_pic {
+.post-author div.img-div {
   width: 25px;
   height: 25px;
   margin-left: 5px;
+}
+
+.post-author a.profile_pic {
+  max-width: 100%;
+  height: auto;  
 }
 
 .card h1.post-name {
@@ -70,6 +76,7 @@ body {
   font-family: monospace;
   font-size: 22px;
   margin-top: 100px;
+  margin-left: 20px;
 }
 
 .post-author a {

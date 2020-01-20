@@ -1,15 +1,16 @@
-from core.models import Post
+from core.models import Post, Comment, Subscribed
 from django.views.generic import ListView, DetailView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render, redirect, get_object_or_404
 from core.forms import CreateBlogPostForm, CommentForm, UpdatePostForm
 from users.models import Account
-from core.models import Comment
 
 def homepage(request):
     posts = Post.objects.all()
+    subs = Subscribed.objects.all()
     context = {
-        "posts": posts
+        "posts": posts,
+        "subs": subs,
     }
     return render(request, "homepage.html", context)
 
@@ -35,6 +36,7 @@ def post_view(request, id):
     post = get_object_or_404(Post, id=id)
     comments = post.comments.all()
     new_comment = None
+    post_user_reaction = post.user_reaction.all()
     if request.method == 'POST':
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
@@ -45,6 +47,7 @@ def post_view(request, id):
             new_comment.save()
     else:
         comment_form = CommentForm(data=request.POST, files=request.FILES)
+
 
     return render(request, template_name, {'post': post,'comments': comments, 'comment_form': comment_form})
 

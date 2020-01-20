@@ -34,7 +34,10 @@
     <div class="rightcolumn">
       <div class="card-sub">
         <h1>мои подписки</h1>
-        <img src="{{ author.profile_pic }}">
+        {% for sub in subs %}
+        <p><img src="{{ subs.author.profile_pic.url }}">
+        <a>{{ subs.author.username }}</a></p>
+        {% endfor %}
       </div>
     </div>
     {% for post in posts %}
