@@ -27,6 +27,7 @@ def post_publish(request):
 		obj.author = author
 		obj.save()
 		form = CreateBlogPostForm()
+        redirect("homepage")
 
 
 	return render(request, 'post_publish.html', {"form" : form})
