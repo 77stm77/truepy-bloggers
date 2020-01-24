@@ -1,0 +1,25 @@
+
+
+.container {
+  width: 100%;
+  max-width: 700px;
+  padding-top: 15px;
+  margin: auto;
+}
+
+.container button[type="submit"], a.cncl {
+  border: none;
+  border-radius: 7px;
+  width : 200px;
+  height : 67px;
+  background-color: #abebe6;
+  color : black;
+  font-family : monospace;
+  font-size : 27px;
+}
+
+.container a.cncl {
+  text-decoration: none;
+  padding: 18px 30px;
+  margin-left: 5px;
+}

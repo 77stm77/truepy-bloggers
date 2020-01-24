@@ -4,7 +4,7 @@ body {
 }
 
 .topnav {
-  width: 1520px;
+  width: auto;
   height: 58px;
   background-color: #abebe6;
   overflow: hidden;
@@ -53,7 +53,21 @@ body {
   border-radius: 12px;
   border-color: #ebabb0;
   border-style: solid;
-  margin-top: 20px;
+  border: none;
+  padding: 20px 20px;
+  margin-top: 10px;
+}
+
+.card-comment {
+  width: 1270px;
+  margin-left: 150px;
+  background-color: white;
+  border-radius: 12px;
+  border-color: #ebabb0;
+  border-style: solid;
+  border: none;
+  padding: 13px 13px;
+  margin-top: 10px;
 }
 
 .post-author div.img-div {
@@ -64,7 +78,7 @@ body {
 
 .post-author a.profile_pic {
   max-width: 100%;
-  height: auto;  
+  height: auto;
 }
 
 .card h1.post-name {
@@ -126,7 +140,7 @@ body {
 }
 
 .comment-form-textarea {
-  border-style: solid;
+  border: none;
   border-radius: 7px;
   border-color: #abebe6;
   width: 500px;
@@ -149,4 +163,13 @@ body {
   font-family: monospace;
   color: black;
   font-weight: bold;
+}
+
+
+.like-dislike button[type="submit"] {
+  margin-left : 20px;
+  background-color: #f1f1f1;
+  padding: 10px 10px;
+  border-radius: 7px;
+  border: none;
 }

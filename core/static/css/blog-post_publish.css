@@ -5,7 +5,7 @@ body {
 
 .topnav {
   position: fixed;
-  width: 1520px;
+  width: auto;
   height: 58px;
   background-color: #abebe6;
   overflow: hidden;
@@ -52,15 +52,16 @@ body {
   width: 850px;
   font-size: 22px;
   border-style: solid;
-  border-color: #ebabb0;
+  border-color: #f1f1f1;
   border-width: thick;
+  border: none;
 }
 
 .create-post-form iframe {
   margin-top: 5px;
   border-radius: 10px;
   border-style: solid;
-  border-color: #ebabb0;
+  border-color: #f1f1f1;
   height: 1000px;
   border-width: thick;
   font-size: 22px;
@@ -91,8 +92,4 @@ body {
   border-color: #abebe6;
   border-style: solid;
   border-width: thick;
-}
-
-.hidden-body-text {
-  visibility: hidden;
 }

@@ -9,6 +9,8 @@ class Post(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
     date_time = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=100)
+    likes = models.ManyToManyField(Account, blank=True, related_name='post_likes')
+    dislikes = models.ManyToManyField(Account, blank=True, related_name='post_dislikes')    
 
     class Meta:
         ordering = ["-date_time"]

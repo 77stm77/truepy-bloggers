@@ -33,6 +33,7 @@ urlpatterns = [
     path('delete/<int:id>/', core_views.delete_post, name="delete"),
     path('my_blog/<int:id>/', user_views.my_blog, name="my_blog"),
     path('summernote/', include('django_summernote.urls')),
+    path('scses/', core_views.scses, name="scses"),
 ]
 
 if settings.DEBUG:

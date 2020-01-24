@@ -4,7 +4,7 @@ body {
 }
 
 .topnav {
-  width: 1520px;
+  width: 1528px;
   position: fixed;
   height: 58px;
   background-color: #abebe6;
@@ -26,6 +26,7 @@ body {
 .topnav a.right {
  float: right;
 }
+
 
 .topnav a.big {
   font-family: monospace;
@@ -53,7 +54,7 @@ body {
 
 .card {
   background-color: white;
-  padding: 20px;
+  padding: 20px 20px;
   margin-top: 20px;
   border-radius: 12px;
   float: right;
@@ -61,6 +62,8 @@ body {
   border-style: solid;
   border-color: #ebabb0;
   margin-left: 170px;
+  border: none;
+
 }
 
 .card img {
@@ -104,6 +107,7 @@ body {
   border-radius: 12px;
   border-style: solid;
   border-color: #ebabb0;
+  border: none;
 }
 
 .card-sub {

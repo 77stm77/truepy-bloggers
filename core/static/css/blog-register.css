@@ -60,6 +60,7 @@ body {
   border-color: #ebabb0;
   border-width: thick;
   border-style: solid;
+  border: none;
 }
 
 .register-form button {

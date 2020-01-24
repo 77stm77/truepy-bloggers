@@ -43,34 +43,3 @@ body {
   border: none;
   font-size: 22px;
 }
-
-.login-form {
-  width: 100%;
-  max-width: 330px;
-  padding-top: 15px;
-  margin: auto;
-}
-
-.login-form input.user-login, input.user-password {
-  width: 343px;
-  height: 46px;
-  border-radius: 12px;
-  font-family: monospace;
-  font-size: 22px;
-  border-color: #ebabb0;
-  border-width: thick;
-  border-style: solid;
-  border: none;
-}
-
-.login-form button.submit-lgn-btn {
-  background-color: #abebe6;
-  font-family: monospace;
-  font-size: 33px;
-  width: 343px;
-  height: 70px;
-  border-radius: 12px;
-  border-color: #abebe6;
-  border-style: solid;
-  border-width: thick;
-}

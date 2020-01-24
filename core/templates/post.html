@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
+  <script src="https://kit.fontawesome.com/d2681bb135.js" crossorigin="anonymous"></script>
   <title>{{ post.name }}</title>
 
   <!-- Bootstrap core CSS -->
@@ -21,7 +21,7 @@
 <body>
   <div class="topnav">
     {% if request.user.is_authenticated %}
-      <a class="big" href="{% url 'homepage' %}">TRUEPY BLOGGERS</a>
+      <a class="big" href="{% url 'homepage' %}"><i class="fab fa-python" ></i>  PYBLOG</a>
       <a href="{% url 'create' %}">написать пост</a>
       <a class="right" href="{% url 'logout' %}">Выйти</a>
       <div class="search-container"
@@ -30,7 +30,7 @@
         </form>
       </div>
     {% else %}
-      <a class="big" href="{% url 'homepage' %}">TRUEPY BLOGGERS</a>
+      <a class="big" href="{% url 'homepage' %}"><i class="fab fa-python" ></i>  PYBLOG</a>
       <a class="right" href="{% url 'register' %}">Зарегистрироватся</a>
       <a class="right" href="{% url 'login' %}">Войти</a>
       <div class="search-container"
@@ -46,7 +46,7 @@
       <div class="post-author">
         <div class="div-img">
           <img class="profile_pic" src="{{ post.author.profile_pic.url }}"><a>{{ post.author.username }}, {{ post.date_time }}</a>
-        </div>  
+        </div>
         {% if post.author == request.user %}
           <button class="edit-post-button"><a href="{% url 'edit' post.id %}" class="edit-post">Редактировать пост</a></button>
           <button class="delete-post-button"><a class="delete-post" href="{% url 'delete' post.id %}">Удалить пост</a></button>
@@ -62,12 +62,20 @@
         <a class="post-content" >{{ post.body | safe | linebreaks }}</a>
       </div>
     </div>
+    <div class="card">
+      <div class="like-dislike">
+        <p><a style="font-family : monospace; font-size : 30px; margin-left : 10px;" >Оцените пост:</a>
+          <button type="submit"><i class="far fa-thumbs-up fa-3x" ></i></button>
+          <button type="submit"><i class="far fa-thumbs-down fa-3x"></i></button>
+        </p>
+      </div>
+    </div>
   </div>
   <div class="card">
     {% if request.user.is_authenticated %}
     <form method="post">{% csrf_token %}
       <div class="comment-form">
-        <p><h5>Прокомментировать Пост:</h5></p>
+        <p><h5 style="font-family : monospace; font-size : 22px;" >Прокомментировать Пост:</h5></p>
         <p><textarea name="body" id='id_body' class="comment-form-textarea" rows="5"></textarea></p>
         <p><button type="submit" class="btn btn-primary">Потвердить</button></p>
       </div>
@@ -81,10 +89,10 @@
     {% endif %}
   </div>
   {% for comment in comments %}
-  <div class="card">
+  <div class="card-comment">
     <div class="comment">
       <p><img src="{{ comment.author.profile_pic.url }}" style="width:50px;height:50px;" class="profile_pic"><a class="comment-author">{{ comment.author.username }}</a></p>
-      <p><a>{{ comment.body }}</a></p>
+      <p><a style="font-family: monospace; font-size: 16px;" >{{ comment.body }}</a></p>
     </div>
   </div>
   {% endfor %}

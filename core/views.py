@@ -16,6 +16,7 @@ def homepage(request):
 
 
 def post_publish(request):
+	context = {}
 	user = request.user
 	if not user.is_authenticated:
 		return redirect('must_authenticate')
@@ -23,21 +24,20 @@ def post_publish(request):
 	form = CreateBlogPostForm(request.POST or None, request.FILES or None)
 	if form.is_valid():
 		obj = form.save(commit=False)
-		author = Account.objects.filter(email=request.user.email).first()
+		author = Account.objects.filter(email=user.email).first()
 		obj.author = author
 		obj.save()
 		form = CreateBlogPostForm()
-        redirect("homepage")
 
-
-	return render(request, 'post_publish.html', {"form" : form})
+	context['form'] = form
+	return render(request, "post_publish.html", context)
 
 def post_view(request, id):
     template_name = 'post.html'
     post = get_object_or_404(Post, id=id)
     comments = post.comments.all()
     new_comment = None
-    post_user_reaction = post.user_reaction.all()
+    likes = "lol"
     if request.method == 'POST':
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
@@ -51,6 +51,8 @@ def post_view(request, id):
 
 
     return render(request, template_name, {'post': post,'comments': comments, 'comment_form': comment_form})
+
+
 
 def edit_post(request, id):
 	context = {}
@@ -82,11 +84,15 @@ def edit_post(request, id):
 	return render(request, 'edit_post.html', context)
 
 def delete_post(request, id):
-    obj = get_object_or_404(Post, id=id)
+    post = get_object_or_404(Post, id=id)
     if request.method == "POST":
-        obj.delete()
-        return redirect('/')
+        post.delete()
+        return redirect("scses")
+
     context = {
-        "object": obj
+        "post": post
     }
     return render(request, "post_confirm_delete.html", context)
+
+def scses(request):
+    return render(request, "scses.html", {})

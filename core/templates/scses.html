@@ -1,28 +1,17 @@
 {% load static %}
-<!DOCTYPE html>
+<!DOCTYPE html >
 <html lang="en">
-
 <head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>{{ post.name }}</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="{% static 'css/blog-topnav.css' %}" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="{% static 'css/blog-cnf-dlt.css' %}" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/d2681bb135.js" crossorigin="anonymous"></script>  
+  <title>Главная страница</title>
+  <link type="text/css" href="{% static 'css/blog-cnf-dlt.css' %}" rel="stylesheet">
+  <link type="text/css" href="{% static 'css/blog-topnav.css' %}" rel="stylesheet">
+  <link type="text/css" href="{% static 'css/blog-scses.css' %}" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/d2681bb135.js" crossorigin="anonymous"></script>
 
 </head>
 
 <body>
 
-  <!-- Navigation -->
   <div class="topnav">
     {% if request.user.is_authenticated %}
       <a class="big" href="{% url 'homepage' %}"><i class="fab fa-python" ></i>  PYBLOG</a>
@@ -45,20 +34,8 @@
     {% endif %}
   </div>
   <div class="container">
-    <form method="POST">{% csrf_token %}
-      <p>
-        <div>
-          <a style="font-family : monospace; font-size : 27px;">Вы точно хотите удалить пост "{{ post.name }}" ?</a>
-        </div>
-      </p>
-      <p>
-        <div>
-          <button type="submit">Да, Удалить</button>
-          <a class="cncl" href="{{ post.get_absolute_url }}">Отменить</a>
-        </div>
-      </p>
-    </form>
+    <p><a style="font-family : monospace; font-size: 32px; margin-top: 20px;" >Вы успешно удалил ваш пост.</a></p>
+    <p><a href="{% url 'homepage' %}" class="btn" >вернутся на главную страницу</a></p>
   </div>
 </body>
-
 </html>
