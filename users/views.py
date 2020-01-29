@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
 from users.models import Account
-from users.forms import RegistrationForm, AccountAuthenticationForm
+from users.forms import RegistrationForm, AccountAuthenticationForm, UpdateDescForm
 from core.models import Post
 
 
@@ -11,12 +11,12 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            email = form.cleaned_data.get('email')
+            username = form.cleaned_data.get('username')
             password1 = form.cleaned_data.get('password1')
-            account = authenticate(email=email, password=password1)
             profile_pic = form.cleaned_data.get("profile_pic")
+            account = authenticate(username=username, password=password1)            
             login(request, account)
-            return redirect('home')
+            return redirect('homepage')
         else:
             context["registration_form"] = form
     else:
@@ -59,6 +59,32 @@ def my_blog(request, id):
     author = Account.objects.get(id=id)
     posts = author.posts.all()
     context = {
-        "posts": posts
+        "posts": posts,
+        "author" : author,
     }
     return render(request, "my_blog.html", context)
+
+def edit_desc(request, id):
+    form = None
+    context = {}
+    author = get_object_or_404(Account, id=id)
+
+    if request.user != author:
+        return redirect('/')
+
+    if request.POST:
+        form = UpdateDescForm(request.POST or None, request.FILES or None, instance=author)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.save()
+            author = obj
+            return redirect("my_blog", id=id)
+
+    form = UpdateDescForm(
+            initial = {
+                "description": author.description,
+			}
+		)
+
+    context['form'] = form
+    return render(request, 'edit-desc.html', context)

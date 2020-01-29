@@ -45,7 +45,7 @@
       <h1 class="post-name">{{ post.name }}</h1>
       <div class="post-author">
         <div class="div-img">
-          <img class="profile_pic" src="{{ post.author.profile_pic.url }}"><a>{{ post.author.username }}, {{ post.date_time }}</a>
+          <img class="profile_pic" src="{{ post.author.profile_pic.url }}"><a href="{{ post.author.get_absolute_url }}" >{{ post.author.username }}<a/><a> {{ post.date_time }}</a>
         </div>
         {% if post.author == request.user %}
           <button class="edit-post-button"><a href="{% url 'edit' post.id %}" class="edit-post">Редактировать пост</a></button>
@@ -83,8 +83,8 @@
     {% else %}
     <p>вам нужно зарегистрироватся или войти чтобы оставить комментарий</p>
     <p class="m-auto">
-      <a href="{% url 'register' %}">Зарегистрируйтесь</a> или
-      <a href="{% url 'login' %}">Войдите</a>.
+      <a style="color:blue;text-decoration : none;" href="{% url 'register' %}">Зарегистрируйтесь</a> или
+      <a style="color:blue;text-decoration : none;" href="{% url 'login' %}">Войдите</a>.
     </p>
     {% endif %}
   </div>

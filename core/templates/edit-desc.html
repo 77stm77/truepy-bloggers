@@ -3,20 +3,23 @@
 <html lang="en">
 
 <head>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Регистрация Нового Аккаунта</title>
+  <title>Главная Страница</title>
 
   <!-- Custom styles for this template -->
-  <link href="{% static 'css/blog-register.css' %}" rel="stylesheet">
+  <link type="text/css" href="{% static 'css/blog-topnav.css' %}" rel="stylesheet" ></link>
+  <link type="text/css" href="{% static 'css/blog-edit-desc.css' %}" rel="stylesheet" ></link>
   <script src="https://kit.fontawesome.com/d2681bb135.js" crossorigin="anonymous"></script>
 
 </head>
 
 <body>
+
 
   <!-- Navigation -->
   <div class="topnav">
@@ -31,6 +34,7 @@
       </div>
     {% else %}
       <a class="big" href="{% url 'homepage' %}"><i class="fab fa-python" ></i>  PYBLOG</a>
+      <a class="right" href="{% url 'register' %}">Зарегистрироватся</a>
       <a class="right" href="{% url 'login' %}">Войти</a>
       <div class="search-container"
         <form action="/action_page.php">
@@ -39,25 +43,13 @@
       </div>
     {% endif %}
   </div>
-  <div class="register-form">
+  <div class="form">
     <form enctype="multipart/form-data" method="post">{% csrf_token %}
-      <p><input type="email" name="email" id="inputEmail" class="user-email" placeholder="Электронная почта" required autofocus></p>
-      <p><input type="text" name="username" id="inputUsername" class="user-login" placeholder="Имя пользователя" required></p>
-      <p><input type="password" name="password1" id="inputPassword1" class="user-password" placeholder="Пароль" required></p>
-      <p><input type="password" name="password2" id="inputPassword2" class="user-password" placeholder="Подтвердите Пароль" required></p>
-      <p><div class="user-avatar">
-        <label for="id_post_image">Аватар пользователя</label>
-        <input type="file" name="profile_pic" id="id_image" accept="image/*">
-      </div></p>
-      {% for field in registration_form %}
-        <p>
-          {% for error in field.errors %}
-            <p style="color: red; font-family: monospace; ">{{ error }}</p>
-          {% endfor %}
-        </p>
-      {% endfor %}
-      <button class="register-btn" type="submit">Зарегистрироватся</button>
+      <h1>Описание Поста</h1>
+      <p><textarea rows="7" name="description" id="id_description" cols="70" ></textarea></p>
+      <button class="create-post" placeholder="Изображение в содержании" type="submit">Сохранить</button>
     </form>
   </div>
 </body>
+
 </html>

@@ -23,3 +23,16 @@ class AccountAuthenticationForm(forms.ModelForm):
         password = self.cleaned_data["password"]
         if not authenticate(username=username, password=password):
             raise forms.ValidationError("Неправильный логин")
+
+class UpdateDescForm(forms.ModelForm):
+	class Meta:
+		model = Account
+		fields = ['description']
+
+	def save(self, commit=True):
+		author = self.instance
+		author.description = self.cleaned_data['description']
+
+		if commit:
+			author.save()
+		return author

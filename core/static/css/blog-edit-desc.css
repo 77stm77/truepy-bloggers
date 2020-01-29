@@ -1,0 +1,36 @@
+.form textarea {
+  margin-top: 5px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #f1f1f1;
+  height: 376px;
+  border-width: thick;
+  font-size: 22px;
+  font-family: monospace;
+}
+
+.form h3 {
+  text-align: center;
+  font-family: monospace;
+}
+
+.form {
+  margin-top: 58px;
+  margin-left: 300px;
+  float: left;
+  font-size: 22px;
+  font-family: monospace;
+}
+
+.form button.create-post {
+  margin-top: 20px;
+  border-radius: 10px;
+  font-family: monospace;
+  font-size: 22px;
+  height: 35px;
+  width: 200px;
+  background-color: #abebe6;
+  border-color: #abebe6;
+  border-style: solid;
+  border-width: thick;
+}

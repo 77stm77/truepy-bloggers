@@ -9,159 +9,91 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Главная Страница</title>
+  <title>{{ author.username }}</title>
 
   <!-- Bootstrap core CSS -->
 
   <!-- Custom styles for this template -->
-  <link href="{% static 'css/blog-home.css' %}" rel="stylesheet">
+  <link href="{% static 'css/blog-my-blog.css' %}" rel="stylesheet">
+  <link href="{% static 'css/blog-topnav.css' %}" rel="stylesheet">
   <script src="https://kit.fontawesome.com/d2681bb135.js" crossorigin="anonymous"></script>
 
 </head>
 
 <body>
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="{% url 'homepage' %}">TRUEPY BLOGGERS</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-      {% if request.user.is_authenticated %}
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">ваш Блог
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'logout' %}">Выйти
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-        </ul>
-      {% else %}
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'register' %}">Зарегистрироватся
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'login' %}">Войти
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-        </ul>
-      {% endif %}
+  <div class="topnav">
+    {% if request.user.is_authenticated %}
+      <a class="big" href="{% url 'homepage' %}"><i class="fab fa-python" ></i>  PYBLOG</a>
+      <a href="{% url 'create' %}">написать пост</a>
+      <a class="auu" href="{{ request.user.get_absolute_url }}" >{{ request.user.username }}</a>
+      <a class="right" href="{% url 'logout' %}">Выйти</a>
+      <div class="search-container">
+        <form action="/action_page.php">
+          <input type="text" placeholder="поиск... ">
+        </form>
       </div>
-    </div>
-  </nav>
-
-  <!-- Page Content -->
-  <div class="container">
-
-    <div class="row">
-
-      <!-- Blog Entries Column -->
-      <div class="col-md-8">
-
-        <h1 class="my-4">На этом сайте мы пишем все на тему Пайтона. Здесь можно вести саой собственный блог.
-        </h1>
-        {% for post in posts %}
-        <!-- Blog Post -->
-        <div class="card mb-4">
-          <div class="card-body">
-            <h2 class="card-title">{{ post.name }}</h2>
-            <p class="card-text">{{ post.body }}</p>
-            <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
-          </div>
-          <div class="card-footer text-muted">
-            Пост зделан в {{ post.date_time }} by
-            <a>{{ post.author }}</a>
-          </div>
-        </div>
-        {% endfor %}
-
-        <!-- Pagination -->
-        <ul class="pagination justify-content-center mb-4">
-          <li class="page-item">
-            <a class="page-link" href="#">&larr; Older</a>
-          </li>
-          <li class="page-item disabled">
-            <a class="page-link" href="#">Newer &rarr;</a>
-          </li>
-        </ul>
-
+    {% else %}
+      <a class="big" href="{% url 'homepage' %}"><i class="fab fa-python" ></i>  PYBLOG</a>
+      <a class="right" href="{% url 'register' %}">Зарегистрироватся</a>
+      <a class="right" href="{% url 'login' %}">Войти</a>
+      <div class="search-container">
+        <form action="/action_page.php">
+          <input type="text" placeholder="поиск... ">
+        </form>
       </div>
-
-      <!-- Sidebar Widgets Column -->
-      <div class="col-md-4">
-
-        <!-- Search Widget -->
-        <div class="card my-4">
-          <h5 class="card-header">Поиск постов о питоне и питонистов</h5>
-          <div class="card-body">
-          <form action="" method="get">
-            <div class="input-group">
-              <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Найти...">
-            </div>
-          </form>
-          </div>
-        </div>
-
-        <!-- Categories Widget -->
-        <div class="card my-4">
-          <h5 class="card-header">Categories</h5>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-lg-6">
-                <ul class="list-unstyled mb-0">
-                  <li>
-                    <a href="#">Web Design</a>
-                  </li>
-                  <li>
-                    <a href="#">HTML</a>
-                  </li>
-                  <li>
-                    <a href="#">Freebies</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Side Widget -->
-        <div class="card my-4">
-          <h5 class="card-header">Side Widget</h5>
-          <div class="card-body">
-            You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-    <!-- /.row -->
-
+    {% endif %}
   </div>
-  <!-- /.container -->
-
-  <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+  <div class="card">
+    <div style="display:flex;" >
+      <img style="max-width : 150px;max-height : 150px; padding: 10px 10px;" src="{{ author.profile_pic.url }}" ></img>
+      <a class="author-username" >{{ author.username }}</a>
+      {% if author.is_superuser == True and author.is_admin == True %}
+      <a class="author-stats" style="color: purple;">[Админ]</a>
+      {% endif %}
+      {% if author.is_admin == True and author.is_superuser == False %}
+      <a class="author-stats" style="color : blue;">[модератор]</a>
+      {% endif %}
+      {% if author.is_admin == False and author.is_staff == False %}
+      <a class="author-stats" style="color: green;">[Пользователь]</a>
+      {% endif %}
     </div>
-    <!-- /.container -->
-  </footer>
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+    <div style="display : flex;" >
+      {% if author.description == "" %}
+      <p class="author-desc" >Описания нету.</p>
+      {% else %}
+      <p class="author-desc" >{{ author.description }}</p>
+      {% endif %}
+      {% if request.user == author %}
+      <a href="{% url 'edit-desc' author.id %}" ><i style="margin-top: 6px; margin-left: 20px; color: black;" class="far fa-edit fa-2x"></i><a/>
+      {% else %}
+      {% endif %}
+    </div>
+  </div>
+  <div class="card">
+    <div class="like-dislike">
+      <a>Рейтинг:   </a>
+      <a class="lkcount">675</a>
+      <a style="margin-left: 20px;"  >Публикации:   </a>
+      <a class="lkcount">675</a>
+      {% if author == request.user %}
+      {% else %}
+      <a class="btn">Подписатся</a>
+      {% endif %}
+    </div>
+  </div>
+  <div class="card" >
+    <h1>Публикации:</h1>
+  </div>
+  {% for post in posts %}
+  <div class="card-post">
+    <h2 class="post-name" >{{ post.name }}</h2>
+    <h5 class="post-author-date" >{{ post.author }}, {{ post.date_time }}</h5>
+    <p>{{ post.body|truncatechars:500|safe }}</p>
+    <div class="read-more">
+    <a href="{{ post.get_absolute_url }}">Читать Дальше --></a>
+    </div>
+  </div>
+  {% endfor %}
 </body>
 
 </html>

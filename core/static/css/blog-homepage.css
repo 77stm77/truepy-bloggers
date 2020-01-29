@@ -18,6 +18,7 @@ body {
   text-decoration: none;
   font-size: 22px;
   font-family: monospace;
+  font-style: normal;
   color: black;
   background-color: #abebe6;
 }
@@ -128,4 +129,20 @@ body {
   font-family: monospace;
   font-size: 18px;
   padding: 10px 10px;
+}
+
+.topnav div.img {
+  margin-top: 5px;
+  max-width : 50px;
+  max-height : 50px;
+  float: right;
+}
+
+.topnav a.auu {
+  font-family: monospace;
+  background-color: #f1f1f1;
+  border: none;
+  border-radius: 7px;
+  width: auto;
+  margin-top: 2px;
 }

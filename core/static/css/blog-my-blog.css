@@ -1,0 +1,116 @@
+.card {
+  background-color: white;
+  padding: 20px 20px;
+  margin-top: 7px;
+  border-radius: 12px;
+  width: 1100px;
+  border-style: solid;
+  border-color: #ebabb0;
+  margin-left: 170px;
+  border: none;
+}
+
+.like-dislike i {
+  background-color: #f1f1f1;
+  padding: 10px 10px;
+  border-radius: 7px;
+  margin-left: 5px;
+}
+
+.like-dislike i[id="dislike"] {
+  margin-left: 27px;
+}
+
+.like-dislike a.lkcount {
+  background-color: #f1f1f1;
+  font-size : 32px;
+  border-radius: 7px;
+  margin-left: 5px;
+  padding: 7px 7px;
+}
+
+.like-dislike {
+  font-family: sans-serif;
+  display: inline-block;
+}
+
+.like-dislike a.btn {
+  margin-left: 600px;
+  background-color: #ebabb0;
+  padding: 7px 7px;
+  border-radius: 7px;
+  font-size: 18px;
+}
+
+.author-desc {
+  width: 500px;
+  height: auto;
+  background-color: #f1f1f1;
+  border-radius: 7px;
+  padding: 12px 12px;
+}
+
+a.author-username {
+  font-weight: bold;
+  margin-left: 300px;
+  margin-top: 75px;
+}
+
+.author-stats, a.author-username {
+  font-size: 32px;
+  float: right;
+}
+
+.author-stats {
+  margin-top: 75px;
+}
+
+.card img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+
+
+.card-post {
+  background-color: white;
+  padding: 20px 20px;
+  margin-top: 50px;
+  border-radius: 12px;
+  width: 1100px;
+  border-style: solid;
+  border-color: #ebabb0;
+  margin-left: 170px;
+  border: none;
+}
+
+.card-post h2.post-name {
+  font-family: sans-serif;
+  font-size: 40px;
+}
+
+.card-post h5.post-author-date {
+  font-family: sans-serif;
+  font-size: 22px;
+}
+
+.card-post p {
+  font-family: monospace;
+  font-size: 20px;
+}
+
+.read-more a {
+  border-radius: 7px;
+  height: 50px;
+  width: 250px;
+  border-style: solid;
+  border-color: #ebabb0;
+  background-color: #ebabb0;
+  text-decoration: none;
+  text-align: center;
+  color: black;
+  font-family: monospace;
+  font-size: 18px;
+  padding: 10px 10px;
+}

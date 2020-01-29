@@ -1,6 +1,8 @@
 body {
   background-color: #f1f1f1;
   margin: 0;
+  font-family: monospace;
+  text-decoration: none;
 }
 
 .topnav {
@@ -70,9 +72,9 @@ body {
   margin-top: 10px;
 }
 
-.post-author div.img-div {
-  width: 25px;
-  height: 25px;
+.div-img img {
+  max-width: 50px;
+  max-height: 50px;
   margin-left: 5px;
 }
 
@@ -97,6 +99,8 @@ body {
   font-family: monospace;
   font-size: 25px;
   margin-left: 10px;
+  text-decoration: none;
+  color: black;
 }
 
 .plz-sub button {
