@@ -9,8 +9,7 @@ class Post(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
     date_time = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=100)
-    likes = models.ManyToManyField(Account, blank=True, related_name='post_likes')
-    dislikes = models.ManyToManyField(Account, blank=True, related_name='post_dislikes')    
+    lk_count = models.PositiveIntegerField(default=0)
 
     class Meta:
         ordering = ["-date_time"]
@@ -20,6 +19,14 @@ class Post(models.Model):
 
     def __str__(self):
         return self.name
+
+class Like(models.Model):
+    account = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='lk_author')
+    post = models.ManyToManyField(Post, blank=True, related_name="lk_post")
+
+    def __str__(self):
+        return self.id
+
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE,related_name='comments')

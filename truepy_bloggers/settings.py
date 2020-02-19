@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'users',
-    'django_summernote',
+    'django_summernote'
 ]
 
 MIDDLEWARE = [
@@ -90,6 +90,7 @@ SUMMERNOTE_CONFIG = {"summernote":{
     'width': 1000,
     'height': 900,
 }}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

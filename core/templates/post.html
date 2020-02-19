@@ -14,7 +14,7 @@
   <!-- Bootstrap core CSS -->
 
   <!-- Custom styles for this template -->
-  <link href="{% static 'css/blog-post.css' %}" rel="stylesheet">
+  <link type="text/css" href="{% static 'css/blog-post.css' %}" rel="stylesheet" ></link>
 
 </head>
 
@@ -33,7 +33,7 @@
       <a class="big" href="{% url 'homepage' %}"><i class="fab fa-python" ></i>  PYBLOG</a>
       <a class="right" href="{% url 'register' %}">Зарегистрироватся</a>
       <a class="right" href="{% url 'login' %}">Войти</a>
-      <div class="search-container"
+      <div class="search-container">
         <form action="/action_page.php">
           <input type="text" placeholder="поиск... ">
         </form>
@@ -42,6 +42,7 @@
   </div>
   <div class="leftcolumn">
     <div class="card">
+
       <h1 class="post-name">{{ post.name }}</h1>
       <div class="post-author">
         <div class="div-img">
@@ -65,8 +66,16 @@
     <div class="card">
       <div class="like-dislike">
         <p><a style="font-family : monospace; font-size : 30px; margin-left : 10px;" >Оцените пост:</a>
-          <button type="submit"><i class="far fa-thumbs-up fa-3x" ></i></button>
-          <button type="submit"><i class="far fa-thumbs-down fa-3x"></i></button>
+          {% if user.is_authenticated %}
+            <form>{% csrf_token %}
+              <button type='submit' class="like-btn" name="like" id="id_like" ><i class="far fa-thumbs-up fa-3x" ></i><a>{{ post.lK_count }}</a>
+            </form>{% csrf_token %}
+              <button type="submit" class="dislike-btn" id="id_dislike" type="button"><i class="far fa-thumbs-down fa-3x"></i><a>{{ post.dislike_count }}</a>
+            </form> 
+          {% else %}
+            <button onclick="alert('Чтобы оценивать пост нужно сначала войти в систему')" class="like-btn" name="like" id="id_like" ><i class="far fa-thumbs-up fa-3x" ></i><a>{{ post.likes }}</a>
+            <button onclick="alert('Чтобы оценивать пост нужно сначала войти в систему')" class="dislike-btn" id="id_dislike" type="button"><i class="far fa-thumbs-down fa-3x"></i><a>{{ post.dislikes }}</a>
+          {% endif %}
         </p>
       </div>
     </div>
@@ -96,6 +105,7 @@
     </div>
   </div>
   {% endfor %}
+
 </body>
 
 </html>

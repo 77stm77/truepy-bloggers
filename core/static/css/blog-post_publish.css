@@ -1,10 +1,10 @@
 body {
   background-color: #f1f1f1;
   margin: 0;
+  font-family: monospace;
 }
 
 .topnav {
-  position: fixed;
   width: auto;
   height: 58px;
   background-color: #abebe6;
@@ -66,6 +66,7 @@ body {
   border-width: thick;
   font-size: 22px;
   font-family: monospace;
+  border: none;
 }
 
 .create-post-form h3 {

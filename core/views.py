@@ -1,8 +1,8 @@
-from core.models import Post, Comment, Subscribed
-from django.views.generic import ListView, DetailView, DeleteView
+from core.models import Post, Comment, Subscribed, Like
+from django.views.generic import ListView, DetailView, DeleteView, View, RedirectView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render, redirect, get_object_or_404
-from core.forms import CreateBlogPostForm, CommentForm, UpdatePostForm
+from core.forms import CreateBlogPostForm, CommentForm, UpdatePostForm, CreateLikeForm
 from users.models import Account
 
 def homepage(request):
@@ -32,26 +32,35 @@ def post_publish(request):
 	context['form'] = form
 	return render(request, "post_publish.html", context)
 
+
 def post_view(request, id):
-    template_name = 'post.html'
-    post = get_object_or_404(Post, id=id)
-    comments = post.comments.all()
-    new_comment = None
-    likes = "lol"
-    if request.method == 'POST':
-        comment_form = CommentForm(data=request.POST)
-        if comment_form.is_valid():
-            new_comment = comment_form.save(commit=False)
-            author = Account.objects.filter(email=request.user.email).first()
-            new_comment.author = author
-            new_comment.post = post
-            new_comment.save()
-    else:
-        comment_form = CommentForm(data=request.POST, files=request.FILES)
-
-
-    return render(request, template_name, {'post': post,'comments': comments, 'comment_form': comment_form})
-
+	template_name = "post.html"
+	post = get_object_or_404(Post, id=id)
+	comments = post.comments.all()
+	new_comment = None
+	new_like = None
+	if request.method == "POST":
+		like_form = CreateLikeForm(data=request.POST)
+		comment_form = CommentForm(data=request.POST)
+		if like_form.is_valid():
+			new_like = like_form.save(commit=False)
+			lk_author = Account.objects.filter(email=request.user.email).first()
+			new_like.lk_author = lk_author
+			new_like.lk_post = post
+			new_like.save()
+		if comment_form.is_valid():
+			new_comment = comment_form.save(commit=False)
+			author = Account.objects.filter(email=request.user.email).first()
+			new_comment.author = author
+			new_comment.post = post
+			new_comment.save
+	
+	else:
+		like_form = CreateLikeForm(data=request.POST, files=request.FILES)
+		comment_form = CommentForm(data=request.POST, files=request.FILES)		
+	
+	context = {'post': post, 'like_form': like_form, 'comment_form': comment_form, 'comments': comments}
+	return render(request, template_name, context)
 
 
 def edit_post(request, id):

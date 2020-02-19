@@ -177,3 +177,7 @@ body {
   border-radius: 7px;
   border: none;
 }
+
+.like-dislike {
+  display: flex;
+}
