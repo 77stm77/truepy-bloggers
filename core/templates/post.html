@@ -67,9 +67,9 @@
       <div class="like-dislike">
         <p><a style="font-family : monospace; font-size : 30px; margin-left : 10px;" >Оцените пост:</a>
           {% if user.is_authenticated %}
-            <form>{% csrf_token %}
-              <button type='submit' class="like-btn" name="like" id="id_like" ><i class="far fa-thumbs-up fa-3x" ></i><a>{{ post.lK_count }}</a>
-            </form>{% csrf_token %}
+            <form method="post">{% csrf_token %}
+              <button type='submit' class="like-btn" name="like" id="id_like" ><i class="far fa-thumbs-up fa-3x" ></i><a>{{ post.lk_count }}</a>
+            </form method="post">{% csrf_token %}
               <button type="submit" class="dislike-btn" id="id_dislike" type="button"><i class="far fa-thumbs-down fa-3x"></i><a>{{ post.dislike_count }}</a>
             </form> 
           {% else %}

@@ -44,6 +44,7 @@ def post_view(request, id):
 		comment_form = CommentForm(data=request.POST)
 		if like_form.is_valid():
 			new_like = like_form.save(commit=False)
+			post.lk_count =+ 1
 			lk_author = Account.objects.filter(email=request.user.email).first()
 			new_like.lk_author = lk_author
 			new_like.lk_post = post
