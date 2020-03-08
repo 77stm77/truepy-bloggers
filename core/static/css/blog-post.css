@@ -170,7 +170,7 @@ body {
 }
 
 
-.like-dislike button[type="submit"] {
+button.like-btn, button.dislike-btn {
   margin-left : 20px;
   background-color: #f1f1f1;
   padding: 10px 10px;
@@ -178,6 +178,30 @@ body {
   border: none;
 }
 
-.like-dislike {
+button.lk_count, button.dislk_count {
+  margin-left: 20px;
+}
+
+.like {
   display: flex;
+}
+
+.dislike {
+  display: flex;
+}
+
+.like-dislike {
+  display: flex
+}
+
+.card-like, .card-dislike {
+  width: auto;
+  margin-left: 150px;
+  background-color: white;
+  border-radius: 12px;
+  border-color: #ebabb0;
+  border-style: solid;
+  border: none;
+  padding: 13px 13px;
+  margin-top: 10px;
 }

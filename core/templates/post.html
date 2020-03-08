@@ -15,7 +15,47 @@
 
   <!-- Custom styles for this template -->
   <link type="text/css" href="{% static 'css/blog-post.css' %}" rel="stylesheet" ></link>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="{% static 'js/likescript.js' %}" ></script>
 
+  {% block jquery %}
+    <script>
+      function like() {       
+        $.ajax (
+          {
+            type: "POST",
+            async: true,
+            url: "{% url 'post' post.id %}",
+            dataType: "json",
+            data: {
+              "like":"1",
+              "csrfmiddlewaretoken": "{{ csrf_token }}",
+            },         
+            success: function(data) {            
+              $("#lk_count").text(data['lk']);               
+            }
+          }    
+        ); 
+      }
+      function dislike() {       
+        $.ajax (
+          {
+            type: "POST",
+            async: true,
+            url: "{% url 'post' post.id %}",
+            dataType: "json",
+            data: {
+              "dislike":"2",
+              "csrfmiddlewaretoken": "{{ csrf_token }}",
+            },         
+            success: function(data) {            
+              $("#dislk_count").text(data['dislk']);               
+            }
+          }    
+        ); 
+      }
+    </script>
+  {% endblock %}  
 </head>
 
 <body>
@@ -63,20 +103,24 @@
         <a class="post-content" >{{ post.body | safe | linebreaks }}</a>
       </div>
     </div>
-    <div class="card">
-      <div class="like-dislike">
-        <p><a style="font-family : monospace; font-size : 30px; margin-left : 10px;" >Оцените пост:</a>
+    <div class="like-dislike">  
+      <div class="card-like">
           {% if user.is_authenticated %}
-            <form method="post">{% csrf_token %}
-              <button type='submit' class="like-btn" name="like" id="id_like" ><i class="far fa-thumbs-up fa-3x" ></i><a>{{ post.lk_count }}</a>
-            </form method="post">{% csrf_token %}
-              <button type="submit" class="dislike-btn" id="id_dislike" type="button"><i class="far fa-thumbs-down fa-3x"></i><a>{{ post.dislike_count }}</a>
-            </form> 
+            <button onclick="like()" class="like-btn" style="  margin-left : 20px;background-color: #f1f1f1;padding: 10px 10px;border-radius: 7px;border: none;" ><i class="far fa-thumbs-up fa-3x" ></i>
+            <a class="lk_count" id="lk_count">{{ post.lk_count }}</a>
           {% else %}
             <button onclick="alert('Чтобы оценивать пост нужно сначала войти в систему')" class="like-btn" name="like" id="id_like" ><i class="far fa-thumbs-up fa-3x" ></i><a>{{ post.likes }}</a>
-            <button onclick="alert('Чтобы оценивать пост нужно сначала войти в систему')" class="dislike-btn" id="id_dislike" type="button"><i class="far fa-thumbs-down fa-3x"></i><a>{{ post.dislikes }}</a>
           {% endif %}
         </p>
+      </div>
+      <div class="card-dislike">  
+          {% if user.is_authenticated %}
+            <button onclick="dislike()" style="margin-left : 20px;background-color: #f1f1f1;padding: 10px 10px;border-radius: 7px;border: none;" class="dislike-btn"  ><i class="far fa-thumbs-down fa-3x"></i>
+            <a class="dislk_count" id="dislk_count">{{ post.dislk_count }}</a>            
+          {% else %}
+            <button onclick="alert('Чтобы оценивать пост нужно сначала войти в систему')" class="dislike-btn" id="id_dislike" type="button"><i class="far fa-thumbs-down fa-3x"></i><a>{{ post.dislikes }}</a>
+          {% endif %}
+        </p>    
       </div>
     </div>
   </div>

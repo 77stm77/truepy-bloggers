@@ -1,5 +1,5 @@
 from django import forms
-from core.models import Post, Like
+from core.models import Post
 from core.models import Comment
 from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
 
@@ -10,11 +10,6 @@ class CreateBlogPostForm(forms.ModelForm):
 		widgets = {
 			'body': SummernoteWidget(),
 		}
-
-class CreateLikeForm(forms.ModelForm):
-	class Meta:
-		model = Like
-		fields = []
 
 class CommentForm(forms.ModelForm):
     class Meta:

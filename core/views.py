@@ -1,9 +1,10 @@
-from core.models import Post, Comment, Subscribed, Like
+from core.models import Post, Comment, Subscribed
 from django.views.generic import ListView, DetailView, DeleteView, View, RedirectView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render, redirect, get_object_or_404
-from core.forms import CreateBlogPostForm, CommentForm, UpdatePostForm, CreateLikeForm
+from core.forms import CreateBlogPostForm, CommentForm, UpdatePostForm
 from users.models import Account
+from django.http import Http404, JsonResponse, HttpResponse
 
 def homepage(request):
     posts = Post.objects.all()
@@ -32,36 +33,39 @@ def post_publish(request):
 	context['form'] = form
 	return render(request, "post_publish.html", context)
 
-
 def post_view(request, id):
-	template_name = "post.html"
-	post = get_object_or_404(Post, id=id)
-	comments = post.comments.all()
-	new_comment = None
-	new_like = None
-	if request.method == "POST":
-		like_form = CreateLikeForm(data=request.POST)
-		comment_form = CommentForm(data=request.POST)
-		if like_form.is_valid():
-			new_like = like_form.save(commit=False)
-			post.lk_count =+ 1
-			lk_author = Account.objects.filter(email=request.user.email).first()
-			new_like.lk_author = lk_author
-			new_like.lk_post = post
-			new_like.save()
-		if comment_form.is_valid():
-			new_comment = comment_form.save(commit=False)
-			author = Account.objects.filter(email=request.user.email).first()
-			new_comment.author = author
-			new_comment.post = post
-			new_comment.save
-	
-	else:
-		like_form = CreateLikeForm(data=request.POST, files=request.FILES)
-		comment_form = CommentForm(data=request.POST, files=request.FILES)		
-	
-	context = {'post': post, 'like_form': like_form, 'comment_form': comment_form, 'comments': comments}
-	return render(request, template_name, context)
+    template_name = 'post.html'
+    post = get_object_or_404(Post, id=id)
+    like = request.POST.get("like")
+    dislike = request.POST.get("dislike")
+
+    if like == "1":
+        lk_reacted = post.user_like_react.filter(Account=request.user).exists()
+        if request.user in lk_reacted:
+            post.lk_count += 1
+            post.user_like_react.add(request.user)      
+            post.save()
+            return JsonResponse({'lk':post.lk_count, "user": "reacted"})            
+        else:    
+            post.lk_count -= 1
+            post.user_like_react.remove(request.user)      
+            post.save()
+            return JsonResponse({'lk': post.lk_count, "user": "unreacted"})		
+        
+    if dislike == "2":
+        dislk_reacted = post.user_dislike_react.filter(account=request.user).exists()
+        if request.user in dislk_reacted:
+            post.dislk_count -= 1
+            post.user_dislike_react.remove(request.user)      
+            post.save()
+            return JsonResponse({'dislk':post.dislk_count, "user": "unreacted"})            
+        else:    
+            post.dislk_count += 1
+            post.user_dislike_react.add(request.user)      
+            post.save()
+            return JsonResponse({'dislk': post.dislk_count, "user": "reacted"})
+        
+    return render(request, template_name, {'post': post})		
 
 
 def edit_post(request, id):

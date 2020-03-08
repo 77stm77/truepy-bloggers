@@ -4,13 +4,16 @@ from users.models import Account
 
 
 class Post(models.Model):
-    author = models.ForeignKey(Account, on_delete=models.CASCADE,related_name='posts')
+    author = models.ForeignKey(Account, on_delete=models.CASCADE)
     body = models.TextField()
     updated_on = models.DateTimeField(auto_now=True)
     date_time = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=100)
     lk_count = models.PositiveIntegerField(default=0)
-
+    dislk_count = models.PositiveIntegerField(default=0)
+    user_like_react = models.ManyToManyField(Account, blank=True, related_name="user_like_react")
+    user_dislike_react = models.ManyToManyField(Account, blank=True, related_name="user_dislike_react")    
+    
     class Meta:
         ordering = ["-date_time"]
 
@@ -20,12 +23,6 @@ class Post(models.Model):
     def __str__(self):
         return self.name
 
-class Like(models.Model):
-    account = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='lk_author')
-    post = models.ManyToManyField(Post, blank=True, related_name="lk_post")
-
-    def __str__(self):
-        return self.id
 
 
 class Comment(models.Model):

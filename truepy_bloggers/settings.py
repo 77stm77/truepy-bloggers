@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+INSTALLED_APPS = [     
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'users',
-    'django_summernote'
+    'django_summernote',  
 ]
 
 MIDDLEWARE = [
@@ -72,11 +72,14 @@ TEMPLATES = [
 
 AUTH_USER_MODEL = 'users.Account'
 
+ASGI_APPLICATION = "truepy_bloggers.routing.application"
+
 WSGI_APPLICATION = 'truepy_bloggers.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+
 
 DATABASES = {
     'default': {
