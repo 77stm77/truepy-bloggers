@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <script src="https://kit.fontawesome.com/d2681bb135.js" crossorigin="anonymous"></script>
+  <title>{{ post.name }}</title>
+
+  <!-- Bootstrap core CSS -->
+
+  <!-- Custom styles for this template -->
+  <link type="text/css" href="{% static 'css/blog-chatroom.css' %}" rel="stylesheet" ></link>
+    <link type="text/css" href="{% static 'css/blog-post.css' %}" rel="stylesheet" ></link>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="{% static 'js/chatroomscript.js' %}" ></script>
+
+</head>
+
+<body>
+  <div class="topnav">
+    {% if request.user.is_authenticated %}
+      <a class="big" href="{% url 'homepage' %}"><i class="fab fa-python" ></i>  PYBLOG</a>
+      <a href="{% url 'create' %}">написать пост</a>
+      <a class="right" href="{% url 'logout' %}">Выйти</a>
+      <div class="search-container"
+        <form autocomplete="off" action="">
+          <div class="autocomplete">
+            <input id="myInput" type="text" value=" " name="myCountry" placeholder="Country">
+          </div>
+          <input type="submit">
+        </form>
+      </div>
+    {% else %}
+      <a class="big" href="{% url 'homepage' %}"><i class="fab fa-python" ></i>  PYBLOG</a>
+      <a class="right" href="{% url 'register' %}">Зарегистрироватся</a>
+      <a class="right" href="{% url 'login' %}">Войти</a>
+      <div class="search-container">
+        <form action="/action_page.php">
+          <input type="text" placeholder="поиск... ">
+        </form>
+      </div>
+    {% endif %}
+  </div>
+  <div class="leftcolumn">
+    {% for comment in comments %}
+    <div class="card" style="width: 1000px;" >
+      <a style="font-size: 24px; font-size: 300px;" >{{ comment.author }}</a>
+      <a>{{ comment.body }}</a>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="footer">
+    <form action="" >  
+      <input></input>
+    </form>
+  </div> 
+</body>
+</html>

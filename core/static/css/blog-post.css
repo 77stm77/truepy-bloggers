@@ -203,5 +203,28 @@ button.lk_count, button.dislk_count {
   border-style: solid;
   border: none;
   padding: 13px 13px;
+  margin-top: 10px; 
+}
+
+.chatroom-lnk {
+  background-color: #abebe6;
+  width: 1270px;
+  height: auto;
+  padding: 10px 10px;
+  font-size: 30px;
+  color: black;
+  text-decoration: antiquewhite;
+}
+
+.card-chatroom {
+  width: 1270px;
+  margin-left: 150px;
+  background-color: #abebe6;
+  border-radius: 12px;
+  border-color: #ebabb0;
+  border-style: solid;
+  border: none;
+  padding: 20px 20px;
   margin-top: 10px;
+  text-align: center;   
 }

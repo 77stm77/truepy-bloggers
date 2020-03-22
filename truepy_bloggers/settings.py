@@ -27,10 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+ASGI_APPLICATION = 'truepy_bloggers.routing.application'
 # Application definition
 
 INSTALLED_APPS = [     
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'users',
-    'django_summernote',  
+    'django_summernote', 
 ]
 
 MIDDLEWARE = [
@@ -71,8 +72,6 @@ TEMPLATES = [
 ]
 
 AUTH_USER_MODEL = 'users.Account'
-
-ASGI_APPLICATION = "truepy_bloggers.routing.application"
 
 WSGI_APPLICATION = 'truepy_bloggers.wsgi.application'
 

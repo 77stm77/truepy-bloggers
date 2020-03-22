@@ -38,35 +38,62 @@ def post_view(request, id):
     post = get_object_or_404(Post, id=id)
     like = request.POST.get("like")
     dislike = request.POST.get("dislike")
+    lk_reacted = post.user_like_react.all()
+    dislk_reacted = post.user_dislike_react.all()
 
     if like == "1":
-        lk_reacted = post.user_like_react.filter(Account=request.user).exists()
         if request.user in lk_reacted:
-            post.lk_count += 1
-            post.user_like_react.add(request.user)      
-            post.save()
-            return JsonResponse({'lk':post.lk_count, "user": "reacted"})            
-        else:    
             post.lk_count -= 1
             post.user_like_react.remove(request.user)      
             post.save()
-            return JsonResponse({'lk': post.lk_count, "user": "unreacted"})		
-        
+            return JsonResponse({'lk':post.lk_count, "userlk": "unreacted"})            
+        else:    
+            post.lk_count += 1
+            post.user_like_react.add(request.user)      
+            post.save()
+            return JsonResponse({'lk': post.lk_count, "userlk": "reacted"})		        
+    
     if dislike == "2":
-        dislk_reacted = post.user_dislike_react.filter(account=request.user).exists()
         if request.user in dislk_reacted:
             post.dislk_count -= 1
             post.user_dislike_react.remove(request.user)      
             post.save()
-            return JsonResponse({'dislk':post.dislk_count, "user": "unreacted"})            
+            return JsonResponse({'dislk':post.dislk_count, "userdislk": "unreacted"})            
         else:    
             post.dislk_count += 1
             post.user_dislike_react.add(request.user)      
             post.save()
-            return JsonResponse({'dislk': post.dislk_count, "user": "reacted"})
-        
+            return JsonResponse({'dislk': post.dislk_count, "userdislk": "reacted"})
+
     return render(request, template_name, {'post': post})		
 
+def postdiscus(request, id):
+    post = get_object_or_404(Post, id=id)
+    comments = post.comments.filter(post=post)
+    if request.method == 'POST':
+        post_text = request.POST.get('the_post')
+        response_data = {}
+
+        post = Post(text=post_text, author=request.user)
+        post.save()
+
+        response_data['result'] = 'Create post successful!'
+        response_data['postpk'] = post.pk
+        response_data['text'] = post.text
+        response_data['created'] = post.created.strftime('%B %d, %Y %I:%M %p')
+        response_data['author'] = post.author.username
+
+        return HttpResponse(
+            json.dumps(response_data),
+            content_type="application/json"
+        )
+    else:
+        return HttpResponse(
+            json.dumps({"nothing to see": "this isn't happening"}),
+            content_type="application/json"
+        )
+    context = {"post": post,"comments": comments}
+    return render(request, "chatroom.html", context)
 
 def edit_post(request, id):
 	context = {}

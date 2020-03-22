@@ -4,7 +4,7 @@ body {
 }
 
 .topnav {
-  width: 1528px;
+  width: 100%;
   position: fixed;
   height: 58px;
   background-color: #abebe6;
