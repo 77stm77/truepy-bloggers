@@ -1,3 +1,4 @@
+
 from django.db import models
 from django.urls import reverse
 from users.models import Account
@@ -30,9 +31,6 @@ class Comment(models.Model):
     author = models.ForeignKey(Account, on_delete=models.CASCADE,related_name='comments_of_authors')
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        ordering = ['-created_on']
 
     def __str__(self):
         return self.author.username

@@ -34,7 +34,6 @@ def login_view(request):
     user = request.user
     if user.is_authenticated:
         return redirect("homepage")
-
     if request.POST:
         form = AccountAuthenticationForm(request.POST)
         if form.is_valid():

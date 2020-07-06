@@ -55,9 +55,52 @@
     {% endfor %}
   </div>
   <div class="footer">
-    <form action="" >  
-      <input></input>
-    </form>
+    <input id="comment-input" type="text" size="100"><br>
+    <input id="comment-btn" type="button" value="Send">
+    <script>
+        const postid = {{ post.id }}
+
+        const chatSocket = new WebSocket('ws://' + window.location.host + '/postdiscus/' + postid + '/');
+
+        chatSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            prompt(data.message + '\n');
+        };
+
+        document.querySelector('#comment-input').focus();
+        document.querySelector('#comment-btn').onkeyup = function(e) {
+            if (e.keyCode === 13) {  
+                document.querySelector('#comment-btn').click();
+            }
+        };
+
+        document.querySelector('#comment-btn').onclick = function(e) {
+            const messageInputDom = document.querySelector('#comment-input');
+            const comment = messageInputDom.commentvalue;
+        
+            chatSocket.send = function (comment, callback) {
+                this.waitForConnection(function () {
+                    ws.send(comment);
+                    if (typeof callback !== 'undefined') {
+                      callback();
+                    }
+                }, 1000);
+            };
+
+            chatSocket.waitForConnection = function (callback, interval) {
+                if (ws.readyState === 1) {
+                    callback();
+                } else {
+                    var that = this;
+                    // optional: implement backoff for interval here
+                    setTimeout(function () {
+                        that.waitForConnection(callback, interval);
+                    }, interval);
+                }
+            };
+            messageInputDom.commentvalue = '';
+        };
+    </script>
   </div> 
 </body>
 </html>

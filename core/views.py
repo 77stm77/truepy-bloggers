@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from core.forms import CreateBlogPostForm, CommentForm, UpdatePostForm
 from users.models import Account
 from django.http import Http404, JsonResponse, HttpResponse
+import json
 
 def homepage(request):
     posts = Post.objects.all()
@@ -70,28 +71,8 @@ def post_view(request, id):
 def postdiscus(request, id):
     post = get_object_or_404(Post, id=id)
     comments = post.comments.filter(post=post)
-    if request.method == 'POST':
-        post_text = request.POST.get('the_post')
-        response_data = {}
-
-        post = Post(text=post_text, author=request.user)
-        post.save()
-
-        response_data['result'] = 'Create post successful!'
-        response_data['postpk'] = post.pk
-        response_data['text'] = post.text
-        response_data['created'] = post.created.strftime('%B %d, %Y %I:%M %p')
-        response_data['author'] = post.author.username
-
-        return HttpResponse(
-            json.dumps(response_data),
-            content_type="application/json"
-        )
-    else:
-        return HttpResponse(
-            json.dumps({"nothing to see": "this isn't happening"}),
-            content_type="application/json"
-        )
+    comment = Comment(body=post_text, author=request.user)
+    comment.save()
     context = {"post": post,"comments": comments}
     return render(request, "chatroom.html", context)
 
